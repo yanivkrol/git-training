@@ -66,40 +66,6 @@ Options:
 
 ---
 
-## `git add <files> <directories>`
-
-Stages specified files nad directories.
-
-Tips and tricks:
-
-- Staged changes using the Jetbrains commit window will be actually staged (as opposed to the regular commit window). This lets us easily stage **specific lines**
-
----
-
-## `git commit`
-
-Captures a snapshot of the project's currently staged changes.
-
-Options:
-
-- `-m` - Specify a message (`git commit -m "my message"`) 
-- `-a` - Commit all modified files (automatic staging)
-- `--amend` - Adds the changes to the last commit, also editing the commit message. If used without changes, only edits the message. `--no-edit` Can be added.
-  After an amend, the commit hash changes, which means you'll have to `push -f` (Assuming original branch is on remote) 
-- `--squash <hash>` - Creates a commit that will later be "squashed" together with the commit specified, merging their changes and their messages
-- `--fixup <hash>` - Same as `squash` but using the specified commit's message instead of merging them. This will be in greater use than `squash`
-
----
-
-## `git commit`
-
-Tips and tricks:
-
-- `git commit -a --amend --no-edit` - quickly add a missing semi colon, or any other changes for which there's no reason to create a new commit
-- `git commit -a --amend --no-edit && git push -f` - Same as above but when you've already pushed (for example build failed because of missing colon)
-
----
-
 ## `git checkout <hash>`
 
 Changes the working branch to the specified commit. Usually used with branch name, but can be used with a hash as well.
@@ -140,6 +106,52 @@ Tips and tricks:
 
 ---
 
+## `git branch`
+
+Shows branches (local only by default)
+
+Options:
+
+- `-m <new-name>` - Rename branch
+- `-d <branches...>` - Deletes merges branches (merged into current branch)
+- `-D <branches...>` - Like `-d` but "forced", deletes unmerged branches too
+
+---
+
+## `git add <files> <directories>`
+
+Stages specified files nad directories.
+
+Tips and tricks:
+
+- Staged changes using the Jetbrains commit window will be actually staged (as opposed to the regular commit window). This lets us easily stage **specific lines**
+
+---
+
+## `git commit`
+
+Captures a snapshot of the project's currently staged changes.
+
+Options:
+
+- `-m` - Specify a message (`git commit -m "my message"`) 
+- `-a` - Commit all modified files (automatic staging)
+- `--amend` - Adds the changes to the last commit, also editing the commit message. If used without changes, only edits the message. `--no-edit` Can be added.
+  After an amend, the commit hash changes, which means you'll have to `push -f` (Assuming original branch is on remote) 
+- `--squash <hash>` - Creates a commit that will later be "squashed" together with the commit specified, merging their changes and their messages
+- `--fixup <hash>` - Same as `squash` but using the specified commit's message instead of merging them. This will be in greater use than `squash`
+
+---
+
+## `git commit`
+
+Tips and tricks:
+
+- `git commit -a --amend --no-edit` - quickly add a missing semi colon, or any other changes for which there's no reason to create a new commit
+- `git commit -a --amend --no-edit && git push -f` - Same as above but when you've already pushed (for example build failed because of missing colon)
+
+---
+
 ## `git reset <hash>`
 
 Change the HEAD of the branch to be the specified commit, all "lost" changes will be unstaged
@@ -167,6 +179,7 @@ Tips and tricks:
     do stuff...
     git reset HEAD^
     ```
+- Can be used across branches
 
 ---
 
@@ -202,12 +215,11 @@ Tips and tricks:
 - Can be used to apply temporary changes that we store in dedicated branches
   ```
   git checkout -b stg-settings
-  git commit -am "stg kafka settings"
-  git commit -am "stg db password"
+  git commit -m "stg kafka settings"
+  git commit -m "stg db password"
   ...
   git checkout feature-branch           > Assume a few commits already
   git cherry-pick stg-settings          > We now have the staging settings in our branch
+  ...
   git reset <HEAD original hash>        > discards the staging settings
   ```
-
----
