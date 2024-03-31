@@ -1,0 +1,35 @@
+alias s="git status"
+alias a="git add"
+alias p="git pull"
+alias co="git checkout"
+alias com='co "$(get_main_branch_name)"'
+alias st="git stash"
+alias stp="git stash pop"
+alias br="git branch"
+alias gitlog='git log --pretty=format:"%h - %an, %ar : %s" --simplify-merges'
+alias logbranch='git log --oneline "$(get_main_branch_name)"..HEAD'
+alias lb=logbranch
+
+get_main_branch_name() {
+    br | grep -E '(^| )(main|master)($| )' | grep -oE '[^ ]+$'
+    # git rev-parse --abbrev-ref origin/HEAD | cut -c8-
+}
+
+# git commit
+
+alias c="git commit"
+alias ca="git commit --amend"
+alias can="git commit --amend --no-edit"
+alias caa="git commit -a --amend"
+alias caan="git commit -a --amend --no-edit"
+alias cwip="git add . && git commit -m wip"
+alias rwip="git reset HEAD^"
+
+# git rebase
+
+alias reb="git rebase"
+alias rebm='git rebase "$(get_main_branch_name)"'
+alias ireb="git rebase -i --autosquash"
+alias irebm='git rebase -i --autosquash "$(get_main_branch_name)"'
+alias rebc="git rebase --continue"
+alias reba="git rebase --abort"
