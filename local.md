@@ -10,7 +10,7 @@ footer: Natural Intelligence
 
 ## Setup:
 
-1. git clone https://github.com/Natural-Intelligence/conversions-etl.git 
+1. git clone https://github.com/yanivkrol/git-training.git 
 2. git config (--global) core.editor "/Applications/IntelliJ\ IDEA.app/Contents/MacOS/idea --wait"
 3. Jetbrains commit window setup
 
