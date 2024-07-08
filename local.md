@@ -38,20 +38,19 @@ Tips and tricks:
 
 ## `git fetch`
 
-Fetch changes of the branch without merging them.
-
-Options:
-
-- `<hash>` specify a different branch for fetch
-- `-a` Fetch changes of all branches
+Fetch changes in the repository without merging them.
+This includes new branches, commits, and tags.
 
 ---
 
 ## `git pull`
 
-Like `git fetch` but also merges/rebase (configurable).
+Performs `git fetch` and then tries to also merges/rebase (configurable) onto the current branch.
+By default, uses `origin/current-branch` as the remote branch to pull from.
 
-- `<hash>` specify a different branch for pull
+Options:
+
+- `<hash>` specify a different branch for pull (and also try to merge, careful!)
 
 ---
 
@@ -173,7 +172,7 @@ Options:
 
 Tips and tricks:
 
-- Don't use unless you are going to pop in the next 2 minutes (It's black hole). Alternative:
+- Don't use unless you are going to pop in the next 2 minutes (It's a black hole). Alternative:
     ```
     git add . && git commit -m "stash"
     do stuff...
