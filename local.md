@@ -208,7 +208,7 @@ Tips and tricks:
 ## `git cherry-pick <hash>`
 
 Adds the specified commit to the top of the current branch
-
+dddd
 Tips and tricks:
 
 - Can be used to apply temporary changes that we store in dedicated branches
